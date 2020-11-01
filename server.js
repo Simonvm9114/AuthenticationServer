@@ -8,13 +8,13 @@ const mongoose = require('mongoose');
 const app = express();
 
 // Connect to database
-mongoose.connect(
-  `mongodb+srv://authServer:${process.env.MONGODB_PWD}@cluster0.dphvb.mongodb.net/authenticationDB`,
-  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
-  () => {
-    console.log('DB connected');
-  }
-);
+// mongoose.connect(
+//   `mongodb+srv://authServer:${process.env.MONGODB_PWD}@cluster0.dphvb.mongodb.net/authenticationDB`,
+//   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
+//   () => {
+//     console.log('DB connected');
+//   }
+// );
 
 // User session configuration
 app.use(
