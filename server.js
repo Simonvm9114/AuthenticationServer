@@ -45,12 +45,22 @@ app.get('/', (req, res) => {
   }
 });
 
+app.get('/authenticate', (req, res) => {
+  console.log('authenticate');
+});
+
+app.get('/isauthenticated', (req, res) => {
+  console.log(req.user);
+
+  res.send(req.user);
+});
+
 // Route snippets
 const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
 
 // Start server
-const PORT = process.env.PORT || 4500;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is up on port ${PORT}`);
 });
