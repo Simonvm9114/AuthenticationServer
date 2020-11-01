@@ -41,7 +41,9 @@ app.get('/', (req, res) => {
   if (!req.user) {
     res.send('<a href="/auth/google" role="button">Sign In with Google</a>');
   } else {
-    res.send(`Welcome ${req.user.name}`);
+    res.send(
+      `Welcome ${req.user.name} <br> <a href="/logout" role="button">Logout</a>`
+    );
   }
 });
 
@@ -50,14 +52,21 @@ app.get('/authenticate', (req, res) => {
 });
 
 app.get('/isauthenticated', (req, res) => {
-  console.log(req.user);
-
-  res.send(req.user);
+  if (!req.user) {
+    res.send({ isAuthenticated: false });
+  } else {
+    res.send({ isAuthenticated: true, ...req.user });
+  }
 });
 
 // Route snippets
 const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
+
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
 // Start server
 const PORT = process.env.PORT || 3000;
